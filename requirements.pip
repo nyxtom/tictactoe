@@ -1,0 +1,7 @@
+Django
+redis
+gevent
+gevent-socketio
+gevent-websocket
+greenlet
+simplejson
