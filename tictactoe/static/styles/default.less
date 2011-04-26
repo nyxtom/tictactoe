@@ -1,0 +1,81 @@
+// Common patterns and transitional properties
+@color: #444;
+@linkcolor: #888;
+@bordertop: #57aedd;
+
+.opacity (@opacity: 100) {
+    filter: alpha(opacity=@opacity);
+    -khtml-opacity: @opacity / 100;
+    -moz-opacity: @opacity / 100;
+    opacity: @opacity / 100;
+}
+.shadowed (@hlen: 0px, @vlen: 0px, @blur: 10px, @color: #333) {
+    box-shadow: @hlen @vlen @blur @color;
+    -moz-box-shadow: @hlen @vlen @blur @color;
+    -webkit-box-shadow: @hlen @vlen @blur @color;
+}
+.transition (@prop: all, @time: 0.1s, @method: ease-in-out) {
+  -webkit-transition: @prop @time @method;
+  -moz-transition: @prop @time @method;
+  -o-transition: @prop @time @method;
+}
+
+// Font face and base styles
+@font-face {
+  font-family: Hoffman;
+  src: url('Hoffmanhand.ttf') format('truetype');
+}
+
+body { overflow: hidden; color: @color; padding: 40px 120px; }
+a { color: @linkcolor; .transition; }
+
+
+// Navigation and header styles
+#header { z-index: 99; position: relative; }
+#header h1 {
+    float: left; 
+    font-family: Hoffman;
+}
+ul.nav { 
+    float: right; 
+    margin-top: -10px;
+    margin-right: -40px;
+    padding-top: 5px;
+    font-size: 1em;
+    border-top: solid 14px #aaa;
+    .shadowed(0px, 10px, 10px, #e8e8e8);
+    .transition;
+    li {
+        float: left;
+        margin: 15px;
+        .transition;
+    }
+}
+ul.nav.active, ul.nav:hover {
+    border-top: solid 14px @bordertop;
+    .shadowed(0px, 12px, 12px, #e1e1e1);
+}
+ul.nav li:hover, ul.nav li a:hover {
+    color: darken(@linkcolor, 20%);
+}
+ul.nav li a { padding-right: 20px; }
+ul.nav li a.new { border-right: dashed 1px #aaa; }
+ul.nav li.login { margin: 11px; margin-left: 5px; }
+ul.nav li.login a.sign { margin-left: 8px; }
+
+// Content and fade styles
+div.fade {
+    .opacity(10);
+}
+div.fade span.massive_tick {
+    color: #111;
+    position: absolute;
+    left: 50%;
+    font-size: 56em;
+    font-family: Hoffman;
+    z-index: -1;
+    cursor: default;
+    margin-left: -280px;
+    top: 50%;
+    margin-top: -440px;
+}
