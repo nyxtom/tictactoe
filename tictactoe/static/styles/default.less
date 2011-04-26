@@ -14,7 +14,7 @@
     -moz-box-shadow: @hlen @vlen @blur @color;
     -webkit-box-shadow: @hlen @vlen @blur @color;
 }
-.transition (@prop: all, @time: 0.1s, @method: ease-in-out) {
+.transition (@prop: all, @time: 0.4s, @method: ease-in-out) {
   -webkit-transition: @prop @time @method;
   -moz-transition: @prop @time @method;
   -o-transition: @prop @time @method;
@@ -26,7 +26,7 @@
   src: url('Hoffmanhand.ttf') format('truetype');
 }
 
-body { overflow: hidden; color: @color; padding: 40px 120px; }
+body { overflow: hidden; color: @color; padding: 40px 60px; }
 a { color: @linkcolor; .transition; }
 
 
@@ -39,7 +39,7 @@ a { color: @linkcolor; .transition; }
 ul.nav { 
     float: right; 
     margin-top: -10px;
-    margin-right: -40px;
+    margin-right: -20px;
     padding-top: 5px;
     font-size: 1em;
     border-top: solid 14px #aaa;
@@ -77,5 +77,5 @@ div.fade span.massive_tick {
     cursor: default;
     margin-left: -280px;
     top: 50%;
-    margin-top: -440px;
+    margin-top: -400px;
 }
