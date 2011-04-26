@@ -1,24 +1,16 @@
-# Django settings for tictactoe project.
+# Django settings for saywhat project.
+import os
+import sys
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, ''))
+sys.path.insert(1, os.path.join(PROJECT_ROOT, 'apps'))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,9 +61,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -83,13 +73,14 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'o@p((utf4!^@lv9w!a%+5tqxc!#k6zy^r-wpy375@x36^d@-b!'
+SECRET_KEY = 'm-ckm%e=b&bdt+%@%t@@syof&o09srrq8_)ifwe7&vc)p4w!=%'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    ('django.template.loaders.cached.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,12 +91,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'tictactoe.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -115,10 +104,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -143,3 +129,23 @@ LOGGING = {
         },
     }
 }
+
+red="\033[1;31m"
+green="\033[1;32m"
+yellow="\033[1;33m"
+white="\033[1;37m"
+nc="\033[0m"
+
+try:
+    from local_settings import *
+    INSTALLED_APPS += EXTRA_INSTALLED_APPS
+    MIDDLEWARE_CLASSES += EXTRA_MIDDLEWARE_CLASSES
+except ImportError:
+    print red + """
+    You need to create a local_settings.py file which needs to contain at least
+    database connection information.
+
+    Copy local_settings_example.py to local_settings.py and edit it.
+    """ + nc
+    import sys
+    sys.exit(1)
