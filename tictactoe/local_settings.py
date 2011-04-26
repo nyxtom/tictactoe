@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_TOOLBAR = DEBUG
 
-EXTRA_INSTALLED_APPS = ('lettuce.django',)
+EXTRA_INSTALLED_APPS = ()
 EXTRA_MIDDLEWARE_CLASSES = ()
 
 # Lettuce specific settings
@@ -23,6 +23,9 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+if DEBUG:
+    EXTRA_INSTALLED_APPS += ('lettuce.django',)
 
 if DEBUG_TOOLBAR:
     EXTRA_MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
