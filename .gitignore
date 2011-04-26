@@ -3,3 +3,4 @@ dist/
 *.pyc
 logs/
 *.rdb
+local_settings.py
