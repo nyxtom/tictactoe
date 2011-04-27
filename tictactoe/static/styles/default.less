@@ -31,6 +31,7 @@ a { color: @linkcolor; .transition; }
 
 
 // Navigation and header styles
+#header, #container, #footer { max-width: 1200px; margin: 0 auto; }
 #header { z-index: 99; position: relative; }
 #header h1 {
     float: left; 
@@ -65,7 +66,7 @@ ul.nav li.login a.sign { margin-left: 8px; }
 
 // Content and fade styles
 div.fade {
-    .opacity(10);
+    .opacity(40);
 }
 div.fade span.massive_tick {
     color: #111;
@@ -73,9 +74,46 @@ div.fade span.massive_tick {
     left: 50%;
     font-size: 56em;
     font-family: Hoffman;
-    z-index: -1;
+    z-index: -2;
     cursor: default;
     margin-left: -280px;
     top: 50%;
     margin-top: -400px;
+    .transition;
 }
+
+// Ticks
+#gamebox {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    width: 545px;
+    height: 500px;
+    margin-left: -280px;
+    margin-top: -225px;
+}
+ul.ticks { float: left; }
+ul.ticks li { 
+    width: 180px; 
+    height: 175px; 
+    display: block; 
+    text-align: center; 
+    cursor: default;
+}
+ul.ticks li span {
+    color: #eee;
+    .transition;
+    text-align: center;
+    font-family: Hoffman;
+    font-size: 11em;
+}
+ul.ticks li:hover span {
+    color: #999;
+}
+ul.ticks li.select:hover span, 
+ul.ticks li.select span {
+    color: #333;
+}
+ul.ticks li.x span:before { content: 'X'; }
+ul.ticks li.o span:before { content: 'O'; }

@@ -22,6 +22,10 @@ if [ -e supervisord.conf ]; then
 
     printf $nc
     python ../manage.py runserver $@
+    simplekill 'supervisor(d|ctl)'
+    printf $green
+    echo "Shutting down..."
+    printf $nc
 else
     printf $red
     echo "Could not find supervisord.conf"
