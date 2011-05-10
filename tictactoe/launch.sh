@@ -13,15 +13,15 @@ simplekill () {
     silent kill -9 `ps aux | egrep -i $1 | egrep -v "(grep)" | awk '{ print $2 }'`
 }
 
-if [ -e supervisord.conf ]; then
+if [ -e scripts/supervisord.conf ]; then
     printf $green
     echo "Starting up..."
     simplekill 'supervisor(d|ctl)'
-    silent supervisord -c supervisord.conf
+    silent supervisord -c scripts/supervisord.conf
     mkdir -p logs
 
     printf $nc
-    python ../manage.py runserver $@
+    python manage.py runserver $@
     simplekill 'supervisor(d|ctl)'
     printf $green
     echo "Shutting down..."
